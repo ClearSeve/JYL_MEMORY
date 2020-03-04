@@ -2,7 +2,11 @@
 
 ## 镜像
 
-npm install -g package --registry=https://registry.npm.taobao.org
+使用淘宝镜像安装库
+npm install -g  包名 --registry=https://registry.npm.taobao.org
+
+替换npm的源：
+npm config set registry https://registry.npm.taobao.org
 //npm config get registry  验证当前npm源
 
 或者使用cnpm代替npm  
@@ -13,22 +17,24 @@ npm install -g cnpm --registry=https://registry.npm.taobao.org
 npm install  
 在项目目录运行，安装项目依赖到当前目录的node_modules
 
-## 运行项目  
+## 运行
 
-npm run dev
-
-## 打包  
-
-npm run build  
-
-## 运行打包项目  
-
+```
+启动：
+npm run dev  
 npm start  
 
+打包：
+npm run build  
+
+
 对应package.json  
-"scripts": {  
-    "start": "***"  
+"scripts": {
+    "dev":"***"
+    "start": "npm run dev"  
+    "build": "***"
 }
+```
 
 ## 安装模块
 
