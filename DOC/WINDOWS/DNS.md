@@ -1,0 +1,5 @@
+# DNS
+
+C:\Windows\System32\drivers\etc
+
+127.0.0.1       abc.com

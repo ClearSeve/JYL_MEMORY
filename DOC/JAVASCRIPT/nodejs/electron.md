@@ -1,0 +1,97 @@
+# electron
+
+## 安装
+
+```
+ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/
+npm install --save-dev electron
+
+
+https://npm.taobao.org/mirrors/electron/
+下载对应的包 electron-v*.*.*-win32-x64.zip
+解压放在node_modules\electron\dist
+
+修改node_modules\electron\index.js内容：
+var path = require('path')
+function getElectronPath () {
+  return path.join(__dirname, 'dist', 'electron.exe')
+}
+module.exports = getElectronPath()
+```
+
+## 创建项目
+
+### package.json
+
+```
+{
+  "name": "prjname",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  }
+}
+
+scripts定义start启动命令，启动项目时可以使用：npm start
+
+其他启动方式： ./node_modules/.bin/electron .
+
+安装全局依赖时使用： electron .
+```
+
+### index.html
+
+```
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+    We are using node <script>document.write(process.versions.node)</script>,
+    Chrome <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script>.
+  </body>
+</html>
+```
+
+### index.js
+
+```
+const { app, BrowserWindow } = require('electron')
+
+let win// 保持对window对象的全局引用
+function createWindow () {
+
+  win = new BrowserWindow({ width: 800, height: 600 })
+  win.loadFile('index.html')
+
+  win.webContents.openDevTools()  // 打开开发者工具
+
+  win.on('closed', () => {
+    win = null
+  })
+}
+
+
+app.on('ready', createWindow)
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
+    app.quit()
+  }
+})
+app.on('activate', () => {
+  if (win === null) {
+    createWindow()
+  }
+})
+```
+
+## 打包
+
+//项目下的node_modules只能安装一个程序集脚本，安装会覆盖
+
+npm install -g electron-packager  
+electron-packager . 'HelloWorld' --platform=win32 --arch=x64   --app-version=0.0.1  --out=./out  --icon=icon.ico
