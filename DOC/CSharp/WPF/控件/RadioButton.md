@@ -1,5 +1,23 @@
 # RadioButton
 
+## 使用
+
+```
+<StackPanel Orientation="Horizontal">
+    <RadioButton  x:Name="A" Content="A"/>
+    <RadioButton  x:Name="B" Content="B"/>
+</StackPanel>
+<StackPanel Orientation="Horizontal">
+    <RadioButton  x:Name="C" Content="C"/>
+    <RadioButton x:Name="D"   Content="D"/>
+</StackPanel>
+
+A.IsChecked = true;
+D.IsChecked = true;
+放在一个区域内的元素会自动分组
+```
+
+## 数据绑定
 ```
 命名空间内定义数据：
 public enum EmunStr
