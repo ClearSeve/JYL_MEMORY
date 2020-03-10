@@ -1,5 +1,9 @@
 # CentOS
 
+查看系统版本  
+cat /etc/redhat-release
+
+
 ## yum
 
 查看已安装的软件
