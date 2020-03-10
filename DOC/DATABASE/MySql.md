@@ -72,14 +72,6 @@ mysql -u root -p密码
 mysql -h30.158.59.78 -u用户名 -p密码
 
 
-
-## 创建数据库
-
-```
-create database dbname;
-use dbname;
-```
-
 ## 修改密码
 
 set password = password('密码');
