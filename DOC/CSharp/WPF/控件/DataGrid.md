@@ -60,6 +60,10 @@ CanUserSortColumns="False"
 
 `<DataGrid Background="#363636" Foreground="White">`
 
+## 修改列名
+
+SourceList.Columns[0].Header = "新标题";
+
 ## 单击事件
 
 PreviewMouseLeftButtonDown
@@ -133,4 +137,21 @@ foreach (PrjDat item in itemList)
 {
      m_data.Remove(item);
 }
+```
+
+## 动态表
+
+```
+ObservableCollection<ExpandoObject> items = new ObservableCollection<ExpandoObject>();
+
+for (int i = 0; i < 5; i++)
+{
+    dynamic item = new ExpandoObject();
+    item.data1 = i.ToString();
+    item.data2 = i.ToString();
+    items.Add(item);
+}
+DbTable.Columns.Add(new DataGridTextColumn() { Header = "数据1", Binding = new Binding("data2") });
+DbTable.Columns.Add(new DataGridTextColumn() { Header = "数据2", Binding = new Binding("data2") });
+DbTable.ItemsSource = items;
 ```

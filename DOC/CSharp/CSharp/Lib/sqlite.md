@@ -1,83 +1,78 @@
-# sqlite
+# SQLite
 
-System.Data.SQLit
-
-## 操作定义
+System.Data.SQLite
 
 ```
-delegate void ProcPerRow(SQLiteDataReader reader);
+public delegate bool SqlLite_Query_PerRow(SQLiteDataReader reader);
+public delegate void SqlLite_Query_OneRow(object result);
 class SqlLiteOpt
 {
-    string m_filePathName;
-    SQLiteConnection m_cn = null;
     SQLiteCommand m_cmd = new SQLiteCommand();
-    public bool Open(string filePathName)
+    public string Open(string filePathName)
     {
         Close();
-        m_filePathName = filePathName;
         try
         {
-            m_cn = new SQLiteConnection("data source=" + m_filePathName + ";version=3;");
-            m_cn.Open();
-            m_cmd.Connection = m_cn;
+            m_cmd.Connection = new SQLiteConnection("data source=" + filePathName + ";version=3;");
+            m_cmd.Connection.Open();
         }
-        catch(Exception e)
+        catch (Exception e)
         {
-            return false;
+            m_cmd.Connection = null;
+            return e.ToString();
         }
-        return true;
+        return null;
     }
     public void Close()
     {
-        if (null == m_cn) return;
-        if (m_cn.State != System.Data.ConnectionState.Open) return;
-        m_cn.Close();
+        if (null == m_cmd.Connection) return;
+        if (m_cmd.Connection.State != System.Data.ConnectionState.Open) return;
+        m_cmd.Connection.Close();
+        m_cmd.Connection = null;
     }
-    public int Exec(string sql)
+    public string Exec(string sql)
     {
-        m_cmd.CommandText = sql;
-        return m_cmd.ExecuteNonQuery();
+        if (null == m_cmd.Connection) return "未建立数据库连接！";
+        try
+        {
+            m_cmd.CommandText = sql;
+            int row = m_cmd.ExecuteNonQuery();
+            return string.Format("{0} rows affected", row);
+        }
+        catch (Exception e)
+        {
+            return e.ToString();
+        }
     }
-    public void Query(string sql, ProcPerRow proc)
+    public string Query(string sql, SqlLite_Query_PerRow fun)
     {
-        m_cmd.CommandText = sql;
-        SQLiteDataReader reader = m_cmd.ExecuteReader();
-        while (reader.Read())
+        if (null == m_cmd.Connection) return "未建立数据库连接！";
+        try
         {
-            proc(reader);
-            //for (int col = 0; col < reader.FieldCount; col++)
-            //{
-            //    object data = reader[col];
-            //}
+            m_cmd.CommandText = sql;
+            SQLiteDataReader reader = m_cmd.ExecuteReader();
+            while (reader.Read()) if (!fun(reader)) break;
+            reader.Close();
+        }catch(Exception e)
+        {
+            return e.ToString();
         }
-        reader.Close();
+        return null;
     }
-}
-```
-
-## 使用
-
-```
-void Write()
-{
-    SqlLiteOpt m_opt = new SqlLiteOpt();
-    if (!m_opt.Open("D:\\test.db")) return;
-    m_opt.Exec("CREATE TABLE IF NOT EXISTS test(id int,name varchar(4))");
-    m_opt.Exec("INSERT INTO test VALUES(0,'aa')");
-    m_opt.Exec("INSERT INTO test VALUES(1,'bb')");
-    m_opt.Close();
-    MessageBox.Show("写入完成");
-}
-void Read()
-{
-    SqlLiteOpt m_opt = new SqlLiteOpt();
-    if (!m_opt.Open("D:\\test.db")) return;
-    m_opt.Query("SELECT * FROM test", (SQLiteDataReader reader)=> {
-        for (int col = 0; col < reader.FieldCount; col++)
+    public string QueryOne(string sql, SqlLite_Query_OneRow fun)
+    {
+        if (null == m_cmd.Connection) return "未建立数据库连接！";
+        try
         {
-            object data = reader[col];
+            m_cmd.CommandText = sql;
+            object result = m_cmd.ExecuteScalar();
+            fun(result);
+            return null;
         }
-    });
-    m_opt.Close();
+        catch (Exception e)
+        {
+            return e.ToString();
+        }
+    }
 }
 ```
