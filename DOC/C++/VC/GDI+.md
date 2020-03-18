@@ -142,7 +142,7 @@ GetClientRect(rect);
 ```
 SolidBrush brush(drawClr);
 PointF pf(pt.x,pt.y);  
-Gdiplus::Font font(_T("宋?体?"), 10);  
-Graphics graphics(MemDC.m_hDC); 
+Gdiplus::Font font(_T("宋体"), 10);  
+Graphics graphics(MemDC.m_hDC);
 graphics.DrawString(name.GetBuffer(),name.GetLength(), &font,pf,&brush);  
 ```
