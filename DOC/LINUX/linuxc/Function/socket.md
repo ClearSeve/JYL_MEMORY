@@ -2,9 +2,11 @@
 
 ```
 使用socket文件做交互媒介，后缀是.sock,类型为s
-  本地  PF_LOCAL 或PF_UNIX
-  网络  PF_INET       IPV4
-           PF_INET6     IPV6
+
+本地: PF_LOCAL 或 PF_UNIX
+
+网络: PF_INET (IPV4)
+     PF_INET6 (IPV6)
 
 UDP    SOCK_DGRAM    打包发送  
 TCP    SOCK_STREAM   数据流的方式发送
@@ -19,6 +21,7 @@ TCP    SOCK_STREAM   数据流的方式发送
 #include <netdb.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
+#include <arpa/inet.h>
 ```
 
 ## TCP
