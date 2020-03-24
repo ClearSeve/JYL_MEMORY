@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
         return 0;
     }
 
-    if (listen(sockSrv, 5) == -1)//最多能接受5个客户端链接
+    if (listen(sockSrv, 5) == -1)//最多能接受5个客户端链接,或SOMAXCONN
     {
         perror("listen出错！");
         return 0;

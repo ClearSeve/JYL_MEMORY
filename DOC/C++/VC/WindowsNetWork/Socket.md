@@ -31,7 +31,7 @@ addrSrv.sin_family=AF_INET;
 addrSrv.sin_port=htons(5555); //端口号
 
 bind(sockSrv,(SOCKADDR*)&addrSrv,sizeof(SOCKADDR));
-listen(sockSrv,5); //最多能接受5个客户端链接，如果是SOMAXCONN，则自动设置为合理的最大值
+listen(sockSrv,5); //最多能接受5个客户端链接，或SOMAXCONN
 
 while(1)
 {

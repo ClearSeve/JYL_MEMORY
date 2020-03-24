@@ -103,9 +103,10 @@ branchName是合并分支的名称
 
 ## github
 
-git config --global user.name "jiyanglin"  
-git config --global user.email "760437565@qq.com"  
+git config --global user.name "user"  
+git config --global user.email "123456@qq.com"  
 
+//ubuntu安装ssh
 sudo apt-get install ssh  
 //测试  
 ssh -T git@github.com  

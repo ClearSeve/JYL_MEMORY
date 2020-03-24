@@ -2,10 +2,12 @@
 
 ## 开发环境安装
 
-linux需要安装开发环境：  
+linux需要安装开发环境：
+
 ubuntu:
 sudo apt-get install build-essential
 sudo apt install gdb
+
 centeros:
 yum install -y gcc-c++
 
@@ -25,14 +27,14 @@ tasks.json:
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "TaskName",     // task的名字
+            "label": "TaskName",     //任务名TaskName
             "type": "shell",
             "command": "g++",
             "args": [
-                "-g", // 加上-g可以断点调试
+                "-g",  //断点调试
                 "Server.cpp",
                 "-o",
-                "a.out"
+                "a.out" //生成文件a.out
             ]
         }
     ]
@@ -54,7 +56,7 @@ launch.json
             "name": "debugLaunch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/a.out",
+            "program": "${workspaceFolder}/a.out", //运行生成文件的a.out
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -68,7 +70,7 @@ launch.json
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "TaskName"  //先执行TaskName这个task
+            "preLaunchTask": "TaskName"  //先执行TaskName
         }
     ]
 }
