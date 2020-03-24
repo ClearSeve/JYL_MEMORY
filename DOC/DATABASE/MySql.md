@@ -51,6 +51,44 @@ init_connect='SET NAMES utf8'
 
 //usr使用密码psd远程登录
 GRANT ALL PRIVILEGES ON *.* TO 'usr'@'%' IDENTIFIED BY 'psd' WITH GRANT OPTION;
+flush privileges;
+```
+## ubuntu安装mysql
+
+```
+//安装
+sudo apt-get update 
+sudo apt-get install mysql-server
+
+//开启
+service mysql start
+service mysql stop
+service mysql restart
+
+//确认是否启动成功
+sudo netstat -tap | grep mysql
+
+//修改编码
+/etc/mysql/mysql.conf.d/mysqld.cnf
+[mysqld]下添加一行character_set_server=utf8
+
+//查看编码
+show variables like "char%";
+
+//获取初始密码
+sudo cat /etc/mysql/debian.cnf
+
+//修改密码
+update mysql.user set authentication_string=password('root') where user='root'and Host = 'localhost';
+use mysql;
+update user set plugin="mysql_native_password";
+flush privileges;
+quit;
+
+//允许远程登录
+GRANT ALL PRIVILEGES ON *.* TO 'usr'@'%' IDENTIFIED BY 'psd' WITH GRANT OPTION;
+flush privileges;
+sudo vi  /etc/mysql/mysql.conf.d/mysqld.cnf注释bind127.0.0.1
 ```
 
 ## windows下卸载
@@ -80,15 +118,6 @@ flush privileges;
 ## 用户管理
 
 以root用户登录
-
-### 创建用户
-
-insert into mysql.user(Host,User,Password)
-values("localhost","abc",password("1234"));
-
-insert into mysql.user(Host,User,Password)  values("192.168.125.133","abc",password("1234"));//为192.168.125.133创建用户abc
-
-flush privileges;
 
 ### 删除用户
 
