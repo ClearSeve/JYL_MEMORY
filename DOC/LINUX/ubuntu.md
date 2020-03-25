@@ -86,12 +86,13 @@ sudo apt-get install google-chrome-stable
 
 /usr/bin/google-chrome-stable  
 
-## 环境变量
+## 用户环境变量
 
-vi   .bashrc  
-在末尾加入一行    export  PATH=$PATH:.  
-source  .bashrc    当前窗口生效，或者重启生效  
-加入后，运行文件时不需要使用./文件名，可直接使用文件名运行。
+vi     ~/.bashrc
+export PATH=newpath:$PATH  
+export ABC=newpath
+
+source  ~/.bashrc
 
 ## 输入法
 

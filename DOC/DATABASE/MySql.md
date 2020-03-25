@@ -91,7 +91,7 @@ flush privileges;
 sudo vi  /etc/mysql/mysql.conf.d/mysqld.cnf注释bind127.0.0.1
 ```
 
-## windows下卸载
+## windows卸载mysql
 
 HKEY_LOCAL_MACHINE\\SYSTEM\\ControlSet001\\Services\\Eventlog\\Application\\MySQL文件夹删除
 
@@ -99,9 +99,10 @@ C:\\ProgramData\\MySQL删除
 
 删除C:\\Documents and Settings\\All Users\\Application Data\\MySQL
 
+
 ## 导入db
 
-source d:\\rmt.sql
+source d:\\abc.sql
 
 ## 登录
 
@@ -112,7 +113,7 @@ mysql -h30.158.59.78 -u用户名 -p密码
 
 ## 修改密码
 
-set password = password('密码');
+update mysql.user set authentication_string=password("root") where User="root";
 flush privileges;
 
 ## 用户管理
@@ -135,10 +136,6 @@ flush privileges;
 grant select,update on dbname.* to user@localhost identified by '1234';
 flush privileges;
 
-### 修改用户密码
-update mysql.user set password=password("new password") where User="abc" and
-Host="localhost";
-flush privileges;
 ```
 
 ## 数据类型
