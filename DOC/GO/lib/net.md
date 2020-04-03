@@ -52,7 +52,7 @@ func clent() {
 	}
 
 	data := "abcd"
-	conn.Write([]byte(data))
+	n,erro := conn.Write([]byte(data))
 }
 ```
 

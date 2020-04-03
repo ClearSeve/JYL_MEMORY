@@ -24,3 +24,9 @@ cv::Mat image = cv::cvarrToMat(ipl);
 imwrite("D:\\111.jpg",image);
 IplImage result=I;
 ```
+
+## 裁剪
+
+```
+cv::Mat dst = img(cv::Rect(x, y, width, height));
+```

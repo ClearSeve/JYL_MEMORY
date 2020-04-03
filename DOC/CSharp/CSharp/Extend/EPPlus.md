@@ -50,9 +50,12 @@ _curSheet.Cells[row, col].Style.Font.Color.SetColor(System.Drawing.Color.FromArg
 + 超链接  
 
 ```
-  m_curSheet.Cells[row, col].Hyperlink = new ExcelHyperLink(path, UriKind.Relative);  
-  m_curSheet.Cells[row, col].Style.Font.Color.SetColor(System.Drawing.Color.FromArgb(0, 0, 255));  
-  m_curSheet.Cells[row, col].Style.Font.UnderLine = true;
+ //路径前不能带//
+ ExcelHyperLink hl = new ExcelHyperLink("dirname/dir", UriKind.Relative);
+ hl.Display = "链接名";
+ curSheet.Cells[row, col].Hyperlink = hl;
+ curSheet.Cells[row, col].Style.Font.Color.SetColor(System.Drawing.ColorFromArgb(0, 0, 255));
+ curSheet.Cells[row, col].Style.Font.UnderLine = true;
 
 sheet页链接：
 curSheet.Cells[row, col].Hyperlink = new ExcelHyperLink("sheet名!A1", "显示文字");
