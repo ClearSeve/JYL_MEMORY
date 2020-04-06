@@ -178,15 +178,15 @@ T ByteToStructure<T>(byte[] dataBuffer)
 {//INFO inf = ByteToStructure<INFO>(by);
     object structure = null;
     int size = Marshal.SizeOf(typeof(T));
-    IntPtr allocIntPtr = Marshal.AllocHGlobal(size);
+    IntPtr bufferIntPtr = Marshal.AllocHGlobal(size);
     try
     {
-        Marshal.Copy(dataBuffer, 0, allocIntPtr, size);
-        structure = Marshal.PtrToStructure(allocIntPtr, typeof(T));
+        Marshal.Copy(dataBuffer, 0, bufferIntPtr, size);
+        structure = Marshal.PtrToStructure(bufferIntPtr, typeof(T));
     }
     finally
     {
-        Marshal.FreeHGlobal(allocIntPtr);
+        Marshal.FreeHGlobal(bufferIntPtr);
     }
     return (T)structure;
 }
