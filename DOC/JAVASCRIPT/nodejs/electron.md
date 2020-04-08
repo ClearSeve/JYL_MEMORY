@@ -5,18 +5,6 @@
 ```
 ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/
 npm install --save-dev electron
-
-
-https://npm.taobao.org/mirrors/electron/
-下载对应的包 electron-v*.*.*-win32-x64.zip
-解压放在node_modules\electron\dist
-
-修改node_modules\electron\index.js内容：
-var path = require('path')
-function getElectronPath () {
-  return path.join(__dirname, 'dist', 'electron.exe')
-}
-module.exports = getElectronPath()
 ```
 
 ## 创建项目
@@ -26,10 +14,15 @@ module.exports = getElectronPath()
 ```
 {
   "name": "prjname",
+  "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "electron ."
-  }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
 
 scripts定义start启动命令，启动项目时可以使用：npm start
@@ -91,7 +84,20 @@ app.on('activate', () => {
 
 ## 打包
 
+在项目目录app上层安装打包环境
 //项目下的node_modules只能安装一个程序集脚本，安装会覆盖
 
-npm install -g electron-packager  
-electron-packager . 'HelloWorld' --platform=win32 --arch=x64   --app-version=0.0.1  --out=./out  --icon=icon.ico
+npm install electron-packager --save-dev
+
+创建package.json：
+```
+{
+    "description":"**",
+    "main": "app/index.js",
+    "scripts":{
+	     "packwin":"electron-packager ./app  MyExe  --platform=win32 --arch=x64 --app-version=0.0.1 --out=./distDir --icon=icon.ico --electron-version=8.2.1 --overwrite"
+	}
+}
+```
+
+运行npm run packwin

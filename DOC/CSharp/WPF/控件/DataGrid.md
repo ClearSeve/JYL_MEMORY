@@ -82,7 +82,7 @@ HeadersVisibility="Column"
 </DataGrid.ColumnHeaderStyle>
 ```
 
-## 选择选择行样式
+## 选择行样式
 
 ```
 <DataGrid.RowStyle >
