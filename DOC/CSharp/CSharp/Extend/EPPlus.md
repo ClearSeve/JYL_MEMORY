@@ -6,7 +6,7 @@ ExcelPackage _pakage = new ExcelPackage(new FileInfo(excelFilePathName));
 
 ## 选择sheet页
 
- ExcelWorksheet _curSheet = _pakage.Workbook.Worksheets[1];
+ ExcelWorksheet _curSheet = _pakage.Workbook.Worksheets[1];  
  _curSheet = m_pakage.Workbook.Worksheets[sheetName];
 
 ## 创建sheet页
@@ -20,7 +20,7 @@ _pakage.Save();
 ## 数据操作
 
 + 获取行列数  
- int rowMax = _curSheet.Dimension.End.Row;
+ int rowMax = _curSheet.Dimension.End.Row;  
  int colMax = _curSheet.Dimension.End.Column;
 + 获取单元格数据  
 string val = (string)_curSheet.GetValue(row, col);  
@@ -40,6 +40,8 @@ _curSheet.SetValue(row, col, val);
   _curSheet.Cells[row, col].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left
 + 字体颜色  
 _curSheet.Cells[row, col].Style.Font.Color.SetColor(System.Drawing.Color.FromArgb(r, g, b));
++ 字体大小  
+curSheet.Cells[row, col, row, col].Style.Font.Size = 12;
 + 单元格背景色  
  _curSheet.Cells[row, col].Style.Fill.PatternType = ExcelFillStyle.Solid;
  _curSheet.Cells[row, col].Style.Fill.BackgroundColor.SetColor(Color.FromArgb(r, g, b));

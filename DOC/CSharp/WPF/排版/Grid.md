@@ -1,6 +1,13 @@
 # Grid
 
+```
+GD.ColumnDefinitions.Clear();
+GD.ColumnDefinitions.Add(new ColumnDefinition());
+GD.ColumnDefinitions.Add(new ColumnDefinition());
+GD.Children.Add(***);
+
 ***.SetValue(Grid.ColumnProperty, 2);
+```
 
 ```
 <Grid>
