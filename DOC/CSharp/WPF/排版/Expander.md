@@ -1,7 +1,7 @@
 # Expander
 
 ```
-<Expander IsExpanded="False" Header="标志" BorderBrush="{x:Null}">
+<Expander IsExpanded="True" Header="Item1" BorderBrush="{x:Null}">
 
 </Expander>
 ```
