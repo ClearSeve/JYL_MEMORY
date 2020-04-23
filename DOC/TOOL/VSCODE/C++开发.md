@@ -5,16 +5,16 @@
 linux需要安装开发环境：
 
 ubuntu:
-sudo apt-get install build-essential
+sudo apt-get install build-essential  
 sudo apt install gdb
 
 centeros:
 yum install -y gcc-c++
-
+yum -y install gdb
 
 ## 工程配置
 
-在工程目录的下需要包含.vscode目录
+在工程目录的下需要包含.vscode目录  
 .vscode目录下包含配置文件tasks.json和launch.json
 （VS工作空间目录和.vscode目录同级，代码也需要在这一级放置）
 
@@ -32,9 +32,9 @@ tasks.json:
             "command": "g++",
             "args": [
                 "-g",  //断点调试
-                "Server.cpp",
+                "main.cpp",//编译的源文件
                 "-o",
-                "a.out" //生成文件a.out
+                "main" //生成文件main
             ]
         }
     ]
@@ -56,7 +56,7 @@ launch.json
             "name": "debugLaunch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/a.out", //运行生成文件的a.out
+            "program": "${workspaceFolder}/main", //运行生成文件的main
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
