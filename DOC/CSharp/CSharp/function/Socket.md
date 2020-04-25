@@ -3,42 +3,30 @@
 ## TCP客户端
 
 ```
-private Socket sokClient = null;
-private string localIP = "127.0.0.1";//服务器地址
-private int localPort = 5555;//端口
-private string sendStr="";//发送内容
+IPAddress address = IPAddress.Parse("127.0.0.1");
+int port = 1234;
+IPEndPoint endpoint = new IPEndPoint(address, port);
+Socket sokClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
-void StartSocket()
-{
-  IPAddress address = IPAddress.Parse(localIP);
-  IPEndPoint endpoint = new IPEndPoint(address, localPort);//把ip和端口转化为IPEndPoint实例
-  sokClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);//创建一个Socket
-
-  sokClient.Connect(endpoint);//连接到服务器  
-  byte[] bs = Encoding.ASCII.GetBytes(sendStr);
-  sokClient.Send(bs, bs.Length, 0);//发送
-
-}
+sokClient.Connect(endpoint);
+byte[] bs = Encoding.UTF8.GetBytes("aaaaa");
+sokClient.Send(bs, bs.Length, 0);
 ```
 
 ## TCP服务端
 
 ```
-private Thread threadSocket = null;
-private Socket socketServer = null;
-private string ip = "127.0.0.1";
-private int port = 5555;
-
 void Start()
 {
     try
     {
-       socketServer = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-       IPAddress address = IPAddress.Parse(ip);
+       Socket socketServer = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+       IPAddress address = IPAddress.Parse("127.0.0.1");
+       int port = 1234;
        IPEndPoint endpoint = new IPEndPoint(address, port);
        socketServer.Bind(endpoint);
 
-       threadSocket = new Thread(SocketRev);
+       Thread threadSocket = new Thread(SocketRev);
        threadSocket.IsBackground = true;
        threadSocket.Start();
      }

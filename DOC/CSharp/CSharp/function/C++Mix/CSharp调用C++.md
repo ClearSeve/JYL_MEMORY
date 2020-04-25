@@ -174,6 +174,8 @@ Marshal.FreeHGlobal(pv);
 ```
 
 ## 结构体序列化
+
+```
 T ByteToStructure<T>(byte[] dataBuffer)
 {//INFO inf = ByteToStructure<INFO>(by);
     object structure = null;
