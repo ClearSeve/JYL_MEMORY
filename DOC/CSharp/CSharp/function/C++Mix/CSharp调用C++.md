@@ -126,9 +126,10 @@ fixed (float* parry = &dat[0])
 ```
 struct INFO
 {
-	int    aa;   //结构体对齐 8
+	int     aa;   //结构体对齐 8
 	double  bb;
-	char  cc[100];
+	char    cc[100];
+    byte    dd[100];
 };
 void __stdcall testrun(INFO *info)
 {
@@ -146,7 +147,9 @@ public struct INFO
        public int aa;
        public double bb;
        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 100)]
-        public string cc;
+       public string cc;
+       [MarshalAs(UnmanagedType.ByValArray, SizeConst = 100)]
+       public byte[] dd;
 }
  [DllImport("AA.dll", EntryPoint = "testrun")]
  public static extern void testrun(ref INFO info);

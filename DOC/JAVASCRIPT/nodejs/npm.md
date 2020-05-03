@@ -8,6 +8,7 @@ npm install -g  包名 --registry=https://registry.npm.taobao.org
 替换npm的源：
 npm config set registry https://registry.npm.taobao.org
 //npm config get registry  验证当前npm源
+//npm config set registry https://registry.npmjs.org
 
 或者使用cnpm代替npm  
 npm install -g cnpm --registry=https://registry.npm.taobao.org  

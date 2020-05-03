@@ -7,6 +7,15 @@ wstring 需要使用wcout和wcin
 
 或者wcout.imbue(locale(""));wcin.imbue(locale(""));
 
+## 长度
+```
+int len = str.size();//resize函数后的长度
+int lenCap = str.capacity();//实际内存长度
+
+str.resize(100);//只归0长于size()的内存部分
+str.clear();//归0全部内存
+```
+
 ## wstring转换
 
 string str = "abc";  

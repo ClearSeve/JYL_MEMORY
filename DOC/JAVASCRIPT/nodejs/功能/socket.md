@@ -19,6 +19,8 @@ server.on('connection', (client) => {
   client.on( 'close', function () {
     console.log('disconnect');
   });
+
+  //client.destroy()
 });
 
 server.listen(1234,'127.0.0.1',function () {
@@ -46,4 +48,6 @@ socket.on( 'error', function ( error ) {
 socket.on('close',function(){
   console.log('close');
 });
+
+//socket.destroy()
 ```

@@ -9,6 +9,8 @@ yum install -y perl perl-Module-Build net-tools autoconf libaio numactl-libs
 //下载安装包
 wget http://dev.mysql.com/get/mysql57-community-release-el7-8.noarch.rpm
 
+yum localinstall mysql57-community-release-el7-8.noarch.rpm
+
 //检查安装情况
 yum repolist enabled | grep "mysql.*-community.*"
 

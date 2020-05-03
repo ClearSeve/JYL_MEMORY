@@ -1,7 +1,8 @@
 # TextBox
 
+
+## 限制输入小数
 ```
-//限制输入小数
 void XX_PreviewTextInput(object sender, TextCompositionEventArgs e)
 {
     TextBox tb = sender as TextBox;
