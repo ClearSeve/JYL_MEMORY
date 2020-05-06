@@ -65,11 +65,36 @@ import (
 )
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintln(w, "hello world")
+	defer r.Body.Close()
+	
+    //fmt.Fprintln(w, "hello world")
+
+	// 检查是否为post请求
+	if r.Method != http.MethodPost {
+		w.WriteHeader(http.StatusMethodNotAllowed)
+		fmt.Fprintf(w, "invalid_http_method")
+		return
+	}
+
+	//application/x-www-form-urlencoded 格式
+	//r.ParseForm()
+	//name:=r.PostFormValue("name")
+	//fmt.Fprintf(w, "name="+name+"\n")
+
+
+	//application/json格式
+	
+	bys, _ := ioutil.ReadAll(r.Body)
+	jsonstr := string(bys)
+	fmt.Fprintf(w, jsonstr)
 }
 
 func main() {
 	http.HandleFunc("/", IndexHandler)
     http.ListenAndServe("0.0.0.0:8080", nil)
+
+    //https
+	http.ListenAndServeTLS(":443", "cajyl.crt",
+		"cajyl.key", nil)
 }
 ```
