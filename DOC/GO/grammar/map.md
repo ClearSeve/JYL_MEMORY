@@ -8,8 +8,9 @@ info[1] += 10
 for id := range info {
 	fmt.Println(id, info[id])
 }
-id, has := info[0] //检验key是否存在
+
+val, has := info[0]
 if has {
-	fmt.Println(id)
+	fmt.Println(val)
 }
 ```

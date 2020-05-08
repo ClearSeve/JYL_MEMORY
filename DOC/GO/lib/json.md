@@ -12,6 +12,7 @@ import (
 
 ## 解析
 
+map方式
 ```
 jstr := "{\"username\":\"jyl\",\"data\":\"123\"}"
 byjs :=  []byte(jstr)
@@ -28,10 +29,11 @@ if ok{
 }
 ```
 
+结构体方式
 ```
 type StuRead struct {
     Name  interface{} `json:"username"`
-    Data  interface{} //变量名必须大写
+    Data  interface{} //变量名必须大写,可解析字符串中小写名
 }
 
 
@@ -51,6 +53,8 @@ case string:
 ```
 
 ## 创建
+
+map方式
 ```
 var jsondat map[string]string = make(map[string]string)
 jsondat["username"] = "jyl"
@@ -62,4 +66,17 @@ if err != nil {
 }
 
 fmt.Println(bys)
+```
+
+结构体方式
+```
+type fileInfoJSON struct {
+	Dir   string  `json:"dir"`
+	File  []string //变量名必须大写,生成字符串名称也为大写开头
+}
+
+inf := fileInfoJSON{"aa",[]string{"x","y","z"}}
+
+bys, _ := json.Marshal(&inf)	
+fmt.Println(string(bys))
 ```
