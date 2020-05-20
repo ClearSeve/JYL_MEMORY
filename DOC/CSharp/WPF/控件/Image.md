@@ -24,3 +24,21 @@ encoder.Save(ms);
 ms.Seek(0, SeekOrigin.Begin);
 byte[] img = new byte[ms.Length];
 ms.Read(img, 0, (int)img.Length);
+
+
+## 显示bmp
+
+```
+using (MemoryStream stream = new MemoryStream())
+{
+    m_CurBmp.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+    stream.Position = 0;
+    BitmapImage result = new BitmapImage();
+    result.BeginInit();
+    result.CacheOption = BitmapCacheOption.OnLoad;
+    result.StreamSource = stream;
+    result.EndInit();
+    result.Freeze();
+    imgCtl.Source = result;
+}
+```

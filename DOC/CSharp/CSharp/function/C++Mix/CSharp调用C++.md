@@ -69,6 +69,16 @@ Marshal.Copy(dat, 0, datpr,dat.Length);
 
 
 ## 字符串传递
+
+```
+extern "C" __declspec(dllexport) void __stdcall  fun(const char *str)
+
+
+public static extern void fun(string str);
+
+fun("测试");
+```
+
 ```
 extern "C" __declspec(dllexport) void __stdcall show(wchar_t *str)
 ```

@@ -1,4 +1,4 @@
-# 注册ActiveX 控件
+# 注册ActiveX控件
 
 ```
 BOOL DllRegister(LPCTSTR lpszDllName)

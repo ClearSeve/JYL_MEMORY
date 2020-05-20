@@ -1,54 +1,51 @@
 # tkinter
 
 ```
-#coding=utf-8  
-import tkinter as tk  
-import threading  
-import tkinter.messagebox as tkMB  
-import tkinter.filedialog as tkFD  
-  
-  
-class Application(tk.Frame):  
-def __init__(self, master=None):  
-super().__init__(master)  
-  
-self.pack() #pack布局
-#可以将pack全部换成grid grid(row=1) grid(row=0,column=1)
-self.create_widgets()  
-def create_widgets(self):  
-self.L = tk.Label(self,text="txt", fg="black", bg="white")  
-self.L.pack()  
-  
-self.E = tk.Entry(self)  
-self.E.pack()  
-  
-self.Etxt = tk.StringVar()  
-self.Etxt.set("xxx")  
-self.E["textvariable"] = self.Etxt  
-  
-  
-self.BtnRun = tk.Button(self,width=15, height=5,text = "Run",command =
-self.__Run)  
-self.BtnRun.pack(padx=20, side='left')  
-def __Run(self):  
-filePathName = tkFD.askopenfilename(filetypes=[('all files', '.\*'),
-('text files', '.txt')])  
-self.L['text'] = filePathName  
-  
-_thread = threading.Thread(target=self.__thrRun)  
-_thread.setDaemon(True)  
-_thread.start()  
-def __thrRun(self):  
-ss = self.Etxt.get()  
-tkMB.showinfo("提示", ss)  
-self.BtnRun['state'] = tk.NORMAL  
-  
-root = tk.Tk()  
-root.title('title')  
-root.geometry('400x200')  
-root.maxsize(400, 200)  
-root.minsize(400, 200)  
-app = Application(master=root)  
+#coding=utf-8
+import tkinter as tk
+import threading
+import tkinter.messagebox as tkMB
+import tkinter.filedialog as tkFD
+
+
+class Application(tk.Frame):
+    def __init__(self, master=None):
+        super().__init__(master)
+
+        self.pack()  
+        self.create_widgets()
+    def create_widgets(self):
+        self.L = tk.Label(self,text="txt", fg="black", bg="white")
+        self.L.pack()
+
+        self.E = tk.Entry(self)
+        self.E.pack()
+
+        self.Etxt = tk.StringVar()
+        self.Etxt.set("xxx")
+        self.E["textvariable"] = self.Etxt
+
+
+        self.BtnRun = tk.Button(self,width=15, height=5,text = "Run",command = self.__Run)
+        self.BtnRun.pack(padx=20, side='left')
+    def __Run(self):
+        filePathName = tkFD.askopenfilename(filetypes=[('all files', '.*'), ('text files', '.txt')])
+        self.L['text'] = filePathName
+
+        _thread = threading.Thread(target=self.__thrRun)
+        _thread.setDaemon(True)
+        _thread.start()
+    def __thrRun(self):
+        ss = self.Etxt.get()
+        tkMB.showinfo("提示", ss)
+        self.BtnRun['state'] = tk.NORMAL
+
+root = tk.Tk()
+root.title('title')
+root.geometry('400x200')
+root.maxsize(400, 200)
+root.minsize(400, 200)
+app = Application(master=root)
 app.mainloop()
 ```
 

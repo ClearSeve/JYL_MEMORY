@@ -3,24 +3,27 @@
 OpenCvSharp4  
 OpenCvSharp4.runtime.win
 
+//OpenCVSharp3
 ## 图像显示
 
+```
 Mat src = new Mat("D:\\1.jpg", ImreadModes.AnyColor);
 //Cv2.ImShow("im", src);
 //Cv2.WaitKey();
 Bitmap bitmap = OpenCvSharp.Extensions.BitmapConverter.ToBitmap(src);//using System.Drawing;
 using (MemoryStream stream = new MemoryStream())
 {
-                bitmap.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg); //不带透明度
-                stream.Position = 0;
-                BitmapImage result = new BitmapImage();
-                result.BeginInit();
-                result.CacheOption = BitmapCacheOption.OnLoad;
-                result.StreamSource = stream;
-                result.EndInit();
-                result.Freeze();
-                img.Source = result;
+    bitmap.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg); //不带透明度
+    stream.Position = 0;
+    BitmapImage result = new BitmapImage();
+    result.BeginInit();
+    result.CacheOption = BitmapCacheOption.OnLoad;
+    result.StreamSource = stream;
+    result.EndInit();
+    result.Freeze();
+    img.Source = result;
 }
+```
 
 ## 图像裁剪
 
@@ -29,6 +32,7 @@ dstImg = img[y1,y2,x1,x2]
 ## bmp转换
 
 System.Drawing.Bitmap bitmap = OpenCvSharp.Extensions.BitmapConverter.ToBitmap(src);
+//mat.ToBitmap();
 
 ## 获取点阵数据
 
@@ -51,7 +55,7 @@ double min, max;
 src.MinMaxIdx(out min, out max);
 
 ## 图像合并
-
+```
 Mat src = new Mat("D:\\a.jpg", ImreadModes.AnyColor | ImreadModes.AnyDepth);
 Mat src2 = new Mat("D:\\b.jpg", ImreadModes.AnyColor | ImreadModes.AnyDepth);
 if (src.Rows != src2.Rows) return;
@@ -61,6 +65,7 @@ src.CopyTo(temp);
 temp = MatrixCom.ColRange(src.Cols, src.Cols + src2.Cols);
 src2.CopyTo(temp);
 Cv2.ImWrite("D:\\c.jpg", MatrixCom);
+```
 
 ## 视频操作
 
@@ -79,13 +84,15 @@ Mat image = new Mat();
 
 ## 绘制矩形
 
+```
 OpenCvSharp.Point pt1 = new OpenCvSharp.Point(X1, Y1);
 OpenCvSharp.Point pt2 = new OpenCvSharp.Point(X2, Y2);
 Scalar clr = new Scalar(255, 0, 0);
 int thickness = 2;
 Cv2.Rectangle(img, pt1, pt2, clr, thickness);
+```
 
 ## 绘制文字
 
-OpenCvSharp.Point pt = new OpenCvSharp.Point(X1, Y1);
+OpenCvSharp.Point pt = new OpenCvSharp.Point(X1, Y1);  
 Cv2.PutText(img, nameStr, pt, HersheyFonts.HersheyComplex, 1,clr1,1);
