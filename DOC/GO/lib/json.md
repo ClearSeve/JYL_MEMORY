@@ -79,4 +79,12 @@ inf := fileInfoJSON{"aa",[]string{"x","y","z"}}
 
 bys, _ := json.Marshal(&inf)	
 fmt.Println(string(bys))
+
+```
+
+数组
+```
+dat := make([]stu, 10)
+bysret, _ := json.Marshal(&dat)
+fmt.Println(string(bys))
 ```
