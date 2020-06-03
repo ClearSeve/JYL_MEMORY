@@ -14,4 +14,10 @@ people.show(10);
 
 JSON.parse()      将JSON 字符串转换为 JavaScript 对象。
 JSON.stringify()  将 JavaScript 值转换为 JSON 字符串。
+
+
+遍历json数组对象
+for(let i = 0;i<jsonstr.length;i++){
+    let a = jsonstr[i]['name']
+}
 ```
