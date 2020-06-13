@@ -15,6 +15,7 @@ yum localinstall mysql57-community-release-el7-8.noarch.rpm
 yum repolist enabled | grep "mysql.*-community.*"
 
 //安装
+//yum module disable mysql  //遇到Unable to find a match: mysql-community-server时使用  
 yum install mysql-community-server
 
 //启动服务
