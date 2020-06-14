@@ -8,6 +8,9 @@ git config --global user.email "email@example.com"
 //查看配置  
 git config --global  --list
 
+//设置默认push的分支
+git config --global push.default current
+
 ## 创建repository
 
 在需要创建的目录下执行初始化命令
