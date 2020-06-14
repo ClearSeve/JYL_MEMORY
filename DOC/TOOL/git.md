@@ -5,6 +5,8 @@
 git config --global user.name "Your Name"
 git config --global user.email "email@example.com"
 
+//查看配置  
+git config --global  --list
 
 ## 创建repository
 
@@ -98,7 +100,6 @@ branchName是合并分支的名称
 + tortoiseGit设置
   Remote: 名称任意  
   URL: //192.168.111.2/aaa (aaa为服务器init --bare的位置)  
-
 
 
 ## github
