@@ -29,3 +29,15 @@ public class bb {
 <%--显示 --%>
 val = <jsp:getProperty name="ObjID"  property="val"/>
 ```
+
+
+```
+springmvc项目
+spring-servlet.xml中构造全局对象
+
+构造函数：
+<bean id="devSer" class="*** ">
+   <constructor-arg value="1"></constructor-arg>
+   <constructor-arg value="2"></constructor-arg>
+</bean>
+```
