@@ -27,6 +27,13 @@ Html文件中：
 
 <button onclick = "fun('xx');">btn</button>
 外部有双引号时，内部用单引号
+
+
+代码导入js文件
+newElement = document.createElement("script");
+newElement.setAttribute("src","a.js");
+newElement.setAttribute("type","text/javascript");
+document.body.appendChild(newElement);
 ```
 
 ## 写入浏览器
@@ -36,18 +43,6 @@ Html文件中：
 javascript:alert("hello");
 ```
 
-## JS文件交互
-
-```
-通过<script>标签引入的两个js之间不能互相调用
-
-a.js需要调用b.js中的函数和变量时，body中载入b.js
-在body节点后用scrpit标签引入a.js
-newElement = document.createElement("script");
-newElement.setAttribute("src","b.js");
-newElement.setAttribute("type","text/javascript");
-document.body.appendChild(newElement);
-```
 
 ## 事件
 

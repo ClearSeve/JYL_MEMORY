@@ -3,9 +3,10 @@
 ```
 window对象是一个浏览器对象，全局，表示浏览器目前正打开的窗口，是其他对象的顶层对象，所以可以省略名称，直接调用
 
-alert                   弹出提示框  alert(....);  
-
 location                location.href = "page"
+
+
+alert                   弹出提示框  alert(....);  
 
 location.host           当前页面的地址，如：127.0.0.1:8080
 

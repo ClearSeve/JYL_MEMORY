@@ -149,3 +149,9 @@ char,varchar
 datetime: 2020-1-1 17:00:00  
 date:2020-1-1
 time:17:00:00
+
+
+## 加密函数
+
+不可逆
+SELECT PASSWORD('jyl');

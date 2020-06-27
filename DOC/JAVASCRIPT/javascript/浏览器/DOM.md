@@ -25,6 +25,8 @@ getElementsByTagName    通过标记对名获取一组标记对
 createElement           创建标记对
                         根据标签名td创建td标记对元素
                         td_con = document.createElement("td");
+
+querySelector("#demo");  选择一个元素
 ```
 
 ## 节点方法
