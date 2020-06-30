@@ -25,3 +25,13 @@ ${}将传入的参数直接显示生成在sql中，不会添加引号
 		ORDER BY  id DESC LIMIT #{start}, #{limit}
 </select>
 ```
+
+```
+大于：&gt;
+
+小于：&lt;
+
+大于等于：&gt;=
+
+小于等于：&lt;=
+```

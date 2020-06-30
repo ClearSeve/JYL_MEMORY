@@ -1,6 +1,7 @@
 
 # java开发
 
+```
 Java Extension Pack  
 支持java8，需要配置JAVA_HOME及path
 
@@ -14,3 +15,4 @@ Maven for Java
 springboot插件
 Spring Boot Extension Pack
 F1调用命令窗口，输入选择 Spring Initializr进行工程创建 
+```

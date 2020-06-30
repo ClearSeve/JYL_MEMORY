@@ -3,12 +3,11 @@
 ```
 window对象是一个浏览器对象，全局，表示浏览器目前正打开的窗口，是其他对象的顶层对象，所以可以省略名称，直接调用
 
-location                location.href = "page"
+location.host           当前页面的主机ip端口地址，如：127.0.0.1:8080
 
+location.href           window.location.protocol + "//" + window.location.host + "/page.html";  当前窗口进行页面跳转
 
 alert                   弹出提示框  alert(....);  
-
-location.host           当前页面的地址，如：127.0.0.1:8080
 
 confirm                 弹出确认框,确认返回true  confirm(...);
 

@@ -155,3 +155,6 @@ time:17:00:00
 
 不可逆
 SELECT PASSWORD('jyl');
+
+## GUID
+SELECT UUID();
