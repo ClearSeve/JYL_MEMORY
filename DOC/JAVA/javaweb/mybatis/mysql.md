@@ -47,7 +47,7 @@ public class dbOpt {
     }
 }
 
-===============??
+===============使用
 dbOpt  db = new dbOpt("testdb","root","root");
 ResultSet rs =db.Query("select * from testTable"); 		
 while(rs.next()){

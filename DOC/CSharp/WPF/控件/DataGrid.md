@@ -155,3 +155,54 @@ DbTable.Columns.Add(new DataGridTextColumn() { Header = "数据1", Binding = new
 DbTable.Columns.Add(new DataGridTextColumn() { Header = "数据2", Binding = new Binding("data2") });
 DbTable.ItemsSource = items;
 ```
+
+## 单元格颜色
+
+```
+public class IntervalDgImgData
+{
+    public int NUM { get; set; }
+    public double VAL  { get; set; }
+}
+public class MyColorConverter : IValueConverter
+{
+    public object Convert(object value, Type typeTarget, object param, System.Globalization.CultureInfo culture)
+    {
+        if (value == null) return "Black";
+        double val = System.Convert.ToDouble(value);
+        if (val > 0) return "Red";
+        return "Black";
+    }
+    public object ConvertBack(object value, Type typeTarget, object param, System.Globalization.CultureInfo culture)
+    {
+        return "";
+    }
+}
+
+
+
+
+<UserControl.Resources>
+    <local:MyColorConverter x:Key="cc1"/>
+</UserControl.Resources>
+
+<DataGrid x:Name="PrjDg" >
+    <DataGrid.Columns>
+        <DataGridTextColumn Binding="{Binding NUM}"  Header="编号" Width="1*"  IsReadOnly="True"/>
+
+        <DataGridTemplateColumn Width="2*">
+            <DataGridTemplateColumn.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="数据" />
+                </DataTemplate>
+            </DataGridTemplateColumn.HeaderTemplate>
+            <DataGridTemplateColumn.CellTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding VAL}"  TextAlignment="Center" Foreground="{Binding VAL,Converter={StaticResource cc1}}" />
+                </DataTemplate>
+            </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+        
+    </DataGrid.Columns>
+</DataGrid>
+```
