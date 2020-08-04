@@ -154,15 +154,15 @@ void __stdcall testrun(INFO *info)
 [StructLayout(LayoutKind.Sequential)]
 public struct INFO
 {
-       public int aa;
-       public double bb;
-       [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 100)]
-       public string cc;
-       [MarshalAs(UnmanagedType.ByValArray, SizeConst = 100)]
-       public byte[] dd;
+    public int aa;
+    public double bb;
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 100)]
+    public string cc;
+    [MarshalAs(UnmanagedType.ByValArray, SizeConst = 100)]
+    public byte[] dd;
 }
- [DllImport("AA.dll", EntryPoint = "testrun")]
- public static extern void testrun(ref INFO info);
+[DllImport("AA.dll", EntryPoint = "testrun")]
+public static extern void testrun(ref INFO info);
 
 
 INFO info = new INFO();

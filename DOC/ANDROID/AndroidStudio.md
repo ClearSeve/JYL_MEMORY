@@ -1,25 +1,5 @@
 # Android Studio
 
-## 修改仓库地址
-
-修改build.gradle文件中两处repositories 
-
-buildscript {
-    repositories {
-        google()
-        maven{url "https://jitpack.io"}
-        maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
-    }
-}
-
-allprojects {
-    repositories {
-        google()
-        maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
-    }
-}
-
-
 ## 发布
 
 buid -》generate sigend APK  
@@ -37,6 +17,22 @@ buid -》generate sigend APK
 |右键菜单 Column Selection Mode    |      开启竖选模式                                         |
 
 
+## sdk下载
+```
+(HTTP Proxy选择未No proxy)
+
+File -》Appearance&Behavior-》System Settings
+
+http://ping.chinaz.com/dl.google.com
+
+选择最短时间ip
+x.x.x.x
+
+C:\Windows\System32\drivers\etc\hosts
+末尾添加:
+x.x.x.x  dl.google.com
+```
+
 ## 问题
 
 + 解决adb not responding if youd like to retry...错误
@@ -49,6 +45,15 @@ netstat -ano | findstr "5037"
 + 控件不显示
 修改styles.xml  
 将Theme改成Base.Theme
+
++解决包冲突
+```
+android {
+     packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+     }
+}
+```
 
 ## 文件分类
 
