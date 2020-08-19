@@ -75,3 +75,6 @@ style标记对中定义
    p{color:Red;}
 </style>
 ```
+
+## 位置
+在横向，left、right、width 三个量中，两个量就可以确定位置

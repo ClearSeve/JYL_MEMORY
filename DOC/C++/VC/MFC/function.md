@@ -3,6 +3,7 @@
 ## 获取窗口对象
 
 CWnd *pWnd = CWnd::FromHandle(hwnd);
+CWnd *pWndMain = AfxGetMainWnd();
 
 ## 时间
 
@@ -30,7 +31,7 @@ TRACE("xx");//可以将CString输出到调试窗口，debug有效
 TRACE(_T("\r\n"));
 ```
 
-## 消息盒子
+## 消息窗口
 
 ### 使用
 
@@ -65,16 +66,21 @@ if (pMsg->message == WM_SYSKEYDOWN && pMsg->wParam == VK_F4)  return TRUE;
 ## 右键菜单
 
 ```
+动态创建
+CMenu menu;
+menu.CreatePopupMenu();
+menu.AppendMenu(MF_STRING, 消息id,_T("cmd1"));
+POINT pt;
+GetCursorPos(&pt);	
+menu.TrackPopupMenu(TPM_LEFTALIGN, pt.x, pt.y, this);
+```
+
+
+```
 菜单资源IDR_MENU1，使用第一列中的菜单内容
 
 CMenu m_menu;
 m_menu.LoadMenu(IDR_MENU1);
-         动态创建
-	CMenu menu;
-	menu.CreatePopupMenu();
-	menu.AppendMenu(MF_STRING, 消息id,_T("cmd1"));//消息id
-
-
 POINT pt;
 GetCursorPos(&pt);	
 m_menu.GetSubMenu(0)->TrackPopupMenu(TPM_LEFTALIGN,pt.x,pt.y,this);

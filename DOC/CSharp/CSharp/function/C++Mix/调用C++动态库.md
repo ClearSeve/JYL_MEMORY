@@ -1,38 +1,4 @@
-# CSharp调用C++
-
-## 调用CLR类库
-建立C++CLR类库，该类库生成的dll，可以直接在c#中添加引用后使用该命名空间内的类。
-与C#交互的函数中不能包含c#不支持的类型，否则在C#中不会提示相应函数
-
-字符串传递
-```
-String^ Fun()
-{
-     CString ss = L"吃饭睡觉";
-     String^ str = gcnew String(ss.GetBuffer());
-     return str;
-}
-
-void Fun(String^ str)
-{
-   CString ss(str);
-   char* ch2 = (char*)(void*)System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(str);
-}
-```
-## 数据类型
-
-|  C/C++    | C#     |长度  |
-| :-:       | :-:    | :-: |
-| short 	|  short |2    |
-| int	    |  int	 |4    |
-| long	    |  int 	 |4    |
-| bool	    |  bool	 |1    |
-| char	    |  byte	 |1    |
-| wchar_t	|  char	 |2    |
-| float	    |  float |4    |
-| double	|  double|8    |
-
-## 调用动态库
+# 调用C++动态库
 
 ```
 [DllImport("**.dll", EntryPoint = "fun", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Ansi)]
@@ -68,21 +34,23 @@ IntPtr datpr = datptr;
 Marshal.Copy(dat, 0, datpr,dat.Length);  
 
 
-## 字符串传递
+## 字符串传入
+
++ char*字符串传入
 
 ```
+//c#中的string自动转换为c++中char*
 extern "C" __declspec(dllexport) void __stdcall  fun(const char *str)
-
 
 public static extern void fun(string str);
 
 fun("测试");
 ```
 
++ wchar_t*字符串传入
 ```
 extern "C" __declspec(dllexport) void __stdcall show(wchar_t *str)
-```
-```
+
 public static extern unsafe void show(char* str);
 unsafe
 {
@@ -94,15 +62,25 @@ unsafe
 }
 ```
 
-
+## 字符串读取
 ```
-extern "C" __declspec(dllexport) void __stdcall getStr(char *outStr)
+extern "C" __declspec(dllexport)  void __stdcall  getStr( char* buf,int bufLen)
 {
-	strcpy_s(outStr, MAX_PATH, "abc吃饭def");
+    strcpy_s(buf, bufLen,"吃饭");
 }
-```
-```
-public static extern unsafe void getStr(byte* outStr);
+
+
+
+public static extern  void getStr(StringBuilder buf,int buflen);
+
+StringBuilder temp = new StringBuilder(1024);
+getStr(temp, 1024);   
+string result = temp.ToString();
+
+
+
+
+public static extern  void getStr(char* buf,int buflen);
 unsafe
 {
     byte[] str = new byte[260];
@@ -132,6 +110,18 @@ fixed (float* parry = &dat[0])
 ```
 
 ## 结构体传递
+
+|  C/C++    | C#     |长度  |
+| :-:       | :-:    | :-: |
+| short 	|  short |2    |
+| int	    |  int	 |4    |
+| long	    |  int 	 |4    |
+| bool	    |  bool	 |1    |
+| char	    |  byte	 |1    |
+| wchar_t	|  char	 |2    |
+| float	    |  float |4    |
+| double	|  double|8    |
+
 
 ```
 struct INFO

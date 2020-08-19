@@ -32,7 +32,9 @@ querySelector("#demo");  选择一个元素
 ## 节点方法
 
 ```
-setAttribute            设置标记对属性值  **.setAttribute("bgcolor","red");
+offsetWidth             获取标签宽度
+
+setAttribute            设置标签属性值  **.setAttribute("bgcolor","red");
 
 removeAttribute         删除属性  **.removeAttribute("bgcolor");
 
