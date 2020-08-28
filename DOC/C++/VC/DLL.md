@@ -10,12 +10,7 @@ dumpbin   -dependents  d:\**.dll
 ## 导出声明
 
 + 导出函数  
-extern "C" void _declspec(dllexport) fun(){}
-
-+ 导出类  
-class  _declspec(dllexport) CtestBase{};
-
-+ stdcall
+extern "C"  _declspec(dllexport) void __stdcall fun(){}
 
 ```C
 void  __stdcall Run()
@@ -30,6 +25,12 @@ Run
 使用：
 int  typedef  (__stdcall *Fun)();
 ```
+
+
++ 导出类  
+class  _declspec(dllexport) CtestBase{};
+
+
 
 ## 共享数据段
 

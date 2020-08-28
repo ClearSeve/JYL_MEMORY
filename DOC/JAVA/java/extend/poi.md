@@ -1,40 +1,110 @@
 # poi
 
 ```
-import java.io.FileOutputStream;  
-import org.apache.poi.hssf.usermodel.HSSFCell;  
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;  
-import org.apache.poi.hssf.usermodel.HSSFRow;  
-import org.apache.poi.hssf.usermodel.HSSFSheet;  
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;  
-
-
-/创建一个webbook，对应一个Excel文件  
-HSSFWorkbook wb = new HSSFWorkbook();  
-
-//格式
-HSSFCellStyle style = wb.createCellStyle();  
-
-//在webbook中添加一个sheet,对应Excel文件中的sheet  
-HSSFSheet sheet = wb.createSheet("表一");  
-
-
-//在sheet中第1行第一列加入数据xx
-HSSFRow row = sheet.createRow(0);  
-HSSFCell cell = row.createCell(0);  
-cell.setCellValue("xxx");  
-cell.setCellStyle(style); //设置单元格格式
-
-
-//保存文件
-try  
-{  
-    FileOutputStream fout = new FileOutputStream("D:/abc.xls");  
-    wb.write(fout);  
-    fout.close();  
-}  
-catch (Exception e)  
-{  
-    e.printStackTrace();  
-}  
+<dependency>
+  <groupId>org.apache.poi</groupId>
+  <artifactId>poi</artifactId>
+  <version>4.1.2</version>
+</dependency>
+<dependency>
+  <groupId>org.apache.poi</groupId>
+  <artifactId>poi-ooxml</artifactId>
+  <version>4.1.2</version>
+</dependency>
 ```
+
+
+## 创建
+```
+Workbook workbook = new XSSFWorkbook();
+// xls
+//Workbook workbook = new HSSFWorkbook(); 
+```
+
+## 打开
+```
+FileInputStream ifs = new FileInputStream(pathName);
+Workbook workbook = new XSSFWorkbook(ifs); 
+//xls
+//Workbook workbook = new HSSFWorkbook(ifs); 
+ifs.close();
+```
+
+## 保存workbook
+```
+FileOutputStream outputStream = new FileOutputStream(pathName);
+workbook.write(outputStream);
+workbook.close();
+outputStream.close();
+```
+
+
+## Sheet页
+```
+Sheet sheet = workbook.createSheet("sheet");
+Sheet sheet = workbook.getSheet("sheet");
+```
+
+## 写入单元格
+```
+Row row = sheet.createRow(1);
+int col = 0;
+Cell cell = row.createCell(col);
+cell.setCellValue("adf");
+sheet.autoSizeColumn(col);
+```
+
+## sheet页样式
+
++ 单元格宽高
+```
+sheet1.setColumnWidth(col, 9000);
+sheet.autoSizeColumn(col);
+row.setHeight((short)500);
+```
+
++ 合并单元格
+```
+int startRow = 0;
+int endRow = 0;
+int startCol = 0;
+int endCol = 5;
+CellRangeAddress region = new CellRangeAddress(startRow, endRow, startCol, endCol);
+sheet.addMergedRegion(region);
+```
+
+
+
+## 单元格样式
++ 设置
+```
+CellStyle style = workbook.createCellStyle();
+cell.setCellStyle(style);
+```
+
++ 对齐
+```
+style.setAlignment(HorizontalAlignment.CENTER);
+style.setVerticalAlignment(VerticalAlignment.CENTER);
+```
+
++ 单元格颜色
+```
+style.setFillForegroundColor(IndexedColors.LIGHT_YELLOW.getIndex());
+style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
+//底部边框
+style.setBorderBottom(BorderStyle.THIN);
+style.setBottomBorderColor(IndexedColors.BLACK.index);
+```
+
++ 字体
+```
+Font font = workbook.createFont();
+font.setFontName("宋体");
+font.setFontHeightInPoints((short)28);
+font.setItalic(false);
+font.setBold(true);
+font.setColor(IndexedColors.RED.index);
+style.setFont(font);
+```  

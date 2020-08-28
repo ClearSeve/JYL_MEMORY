@@ -1,5 +1,8 @@
 # CMD
 
+## path
+path=%path%;C:\XXX
+
 ## help
 
 + help   **  

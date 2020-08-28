@@ -39,7 +39,7 @@ Marshal.Copy(dat, 0, datpr,dat.Length);
 + char*字符串传入
 
 ```
-//c#中的string自动转换为c++中char*
+//C#的导入函数CharSet设置为CharSet.Ansi或者不设置， c#中的string将自动转换为c++中char*
 extern "C" __declspec(dllexport) void __stdcall  fun(const char *str)
 
 public static extern void fun(string str);

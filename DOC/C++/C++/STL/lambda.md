@@ -1,37 +1,14 @@
 # lambda表达式
 
-```
-lambda表达式的参数列表基本和函数的一致，有如下限制：
-参数列表不能有默认参数
-不能是可变参数列表
+lambda表达式的参数列表基本和函数的一致，有如下限制：  
+参数列表不能有默认参数  
+不能是可变参数列表  
 所有的参数必须有个变量名
 
 
-遍历每个元素，让该元素*10；
-struct A{ void operator()(int &x){x = x*10;} }; //需要重载()
-std::for_each(v.begin(),v.end(),A()); // vector<int> v;
-//使用lambda
-for_each(v.begin(), v.end(), [](int &a) { a *= 10;});
+```
+[this, &y](int x) {} //[]中写入要使用的变量列表，&为访问所有外部元素，=为按值访问所有外部元素
 
-
-
-struct Data
-{
-	Data():a(1),b(1){}
-	int a;
-	int b;
-};
-vector<Data>  v(5);
-
-for_each(v.begin(), v.end(), [](Data &dat) { dat.a *= 10;});//访问每个元素的引用
-for_each(v.begin(), v.end(), [](Data dat) {cout << dat.a << endl;});//访问每个元素的值
-
-//////////访问外部变量
-int sum = 0;
-for_each(v.begin(), v.end(), [&](Data &dat) { sum += dat.a ;});//按引用访问外部元素
- 
-int  temp = 100;
-for_each(v.begin(), v.end(), [=](Data dat) {cout << dat.a * 100 << endl;});//按值访问外部元素
 
 //作为参数传递
 template<typename _Fun>
@@ -42,10 +19,10 @@ void fun(_Fun callback)
 }
 
 调用：
-	int factor = 10;
-	fun([&] (int &x){
-		cout << factor* x << endl;
-	});
+int factor = 10;
+fun([&] (int &x){
+	cout << factor* x << endl;
+});
 
 
 //map访问方式
