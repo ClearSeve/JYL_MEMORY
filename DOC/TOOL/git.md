@@ -19,7 +19,7 @@ git init
 
 ## 提交
 
-git add .            添加当前所有文件，可以选择添加
+git add .  --all          添加当前所有文件，可以选择添加
 git commit -m  ..    提交，-m加入提交理由
 
 
