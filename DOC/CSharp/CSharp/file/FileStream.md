@@ -21,7 +21,10 @@ string s = "abcdefg";
 byte[] data =Encoding.UTF8.GetBytes(s);
 
 file.Write(data, 0, data.Length);
-1.3.	文件指针移动
+```
+
+## 文件指针移动
+```
 file.Seek(2, SeekOrigin.Begin);  //文件指针从头向后移动两个
 file.Seek(-2, SeekOrigin.End);从末尾向前移动两个位置
 ```
