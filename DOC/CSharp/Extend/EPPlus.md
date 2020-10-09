@@ -65,3 +65,6 @@ curSheet.Cells[row, col].Hyperlink = new ExcelHyperLink("sheet名!A1", "显示�
 
 + 单元格大小  
 _curSheet.Column(col).Width = 10;
+
++ 列冻结
+curSheet.View.FreezePanes(0, 4);//冻结前3列

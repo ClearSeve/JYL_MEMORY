@@ -25,6 +25,10 @@ public void <font color="#00FFFF">Fun</font>()
 调用用户控件中的方法:  
 <font color="#FF00FF">userCtl</font>.<font color="#00FFFF">Fun()</font>;
 
+```
+引用其他dll中的控件时，需要clr-namespace:***;assembly=**
+xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"  
+``` 
 ## 容器
 
 ```
@@ -43,3 +47,15 @@ public UserControl CONTENT_PAGE
 ```
 
 CONTENT_PAGE = <font color="#FF00FF">userCtl</font>;
+
+
+## 动态加载xaml
+```
+string strXaml = "<Button xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'" + 
+                " Width='128' Height='32'>" + 
+                " STR </Button>"; 
+StringReader strreader = new  StringReader(strXaml); 
+XmlTextReader xmlreader = new  XmlTextReader(strreader);
+object obj = XamlReader.Load(xmlreader);
+CP.Content = (UIElement)obj;
+```

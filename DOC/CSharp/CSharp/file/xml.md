@@ -39,7 +39,7 @@ attr.Value = "bb";
 nodeB.Attributes.Append(attr);
 nodeB.AppendChild(doc.CreateComment("我是注释"));//插注释
 root.AppendChild(nodeB);
- ```
+```
 
 ## 读取
 
@@ -66,4 +66,30 @@ if (rootNode.HasChildNodes)
            string str = node.InnerText;
     }
 }
+```
+
+
+## xmlns
+```
+对于带xmlns的节点，需要特殊处理
+
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.6"/>
+  </startup>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <probing />
+    </assemblyBinding>
+  </runtime>
+</configuration>
+
+
+mlDocument docNode = new XmlDocument();
+docNode.Load(xmlpathname);
+
+XmlNamespaceManager xnm = new XmlNamespaceManager(docNode.NameTable);
+xnm.AddNamespace("x", "urn:schemas-microsoft-com:asm.v1");//添加xml中节点上xmlns的名称空间
+XmlNode node = docNode.SelectSingleNode("/configuration/runtime/x:assemblyBinding/x:probing", xnm);//节点带xmlns，子节点也必须带
 ```

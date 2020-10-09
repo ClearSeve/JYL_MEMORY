@@ -4,6 +4,9 @@
 class类型必须使用new来创建对象：B b=new B();
 也可以创建临时对象调用函数：new B().fun();
 
+判断是否是某个类
+if (obj instanceof ClassName)
+
 this可以指代当前对象
 super指代父类：super();super.fun();
 super(xxx)  只能在构造函数第一行调用基类的构造
