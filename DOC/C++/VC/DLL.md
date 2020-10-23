@@ -63,7 +63,7 @@ show()
 ```
 只需要dll文件
 
-typedef void (*pFun)();
+typedef void ( __stdcall *pFun)();
 
 HINSTANCE hInstanceLibrary=::LoadLibrary("kk.dll");
 

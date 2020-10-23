@@ -42,3 +42,28 @@ using (MemoryStream stream = new MemoryStream())
     imgCtl.Source = result;
 }
 ```
+
+
+## 格式转换
+```
+ublic System.Windows.Media.Imaging.BitmapSource ConvertBitmap(Bitmap source)
+{
+   return System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                  source.GetHbitmap(),
+                  IntPtr.Zero,
+                  Int32Rect.Empty,
+                  System.Windows.Media.Imaging.BitmapSizeOptions.FromEmptyOptions());
+}
+public  Bitmap BitmapFromSource(System.Windows.Media.Imaging.BitmapSource bitmapsource)
+{
+    Bitmap bitmap;
+    using (var outStream = new MemoryStream())
+    {
+        System.Windows.Media.Imaging.BitmapEncoder enc = new System.Windows.Media.Imaging.BmpBitmapEncoder();
+        enc.Frames.Add(System.Windows.Media.Imaging.BitmapFrame.Create(bitmapsource));
+        enc.Save(outStream);
+        bitmap = new Bitmap(outStream);
+    }
+    return bitmap;
+}
+```

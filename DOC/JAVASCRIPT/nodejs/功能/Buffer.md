@@ -27,6 +27,8 @@ buf.toString('utf8',1,4)//从1下标开始到下标3的数据进行转换
 buf.toString('hex')
 buf.toString('base64')
 
+uint8dat = buf[10]
+
 json = JSON.stringify(buf)//{"type":"Buffer","data":[...]}
 
 
@@ -51,7 +53,7 @@ buf.writeDoubleLE
 ```
 
 ## 裁剪
-//从下标0开始裁剪到下标1
+//从下标0开始裁剪到下标1  
 var buffer2 = buf1.slice(0,2)
 
 ## 合并
@@ -62,11 +64,11 @@ var buffer3 = Buffer.concat([buf1,buf2])
 ```
 const buf1 = Buffer.from('012345')
 const buf2 = Buffer.from('6789')
-let bufStartPos = 2
-let sourceStartPos = 1
-let sourceEndPos = 3
-buf2.copy(buf1, bufStartPos,sourceStartPos,sourceEndPos);
-//结果为：017845
+let buf1StartPos = 2
+let buf2StartPos = 1
+let buf2EndPos = 3
+buf2.copy(buf1, buf1StartPos,buf2StartPos,buf2EndPos);
+//buf2部分拷贝到buf1，结果为：017845
 ```
 
 

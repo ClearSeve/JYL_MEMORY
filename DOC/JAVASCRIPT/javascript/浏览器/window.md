@@ -33,4 +33,8 @@ moveBy                  移动偏移量  moveBy(-10,100);
 scrollTo                移动右侧和下方滚动条
 
 resizeTo                设置窗口宽高  resizeTo(500, 500);
+
+innerHeight             显示区的高度
+
+innerWidth              显示区的宽度
 ```
