@@ -13,6 +13,12 @@ frame: false
 //禁止用户缩放窗口  
 resizable: false
 
+//启用跨域和nodejs
+win = new BrowserWindow({ width: 800, height: 600 ,webPreferences: {
+    nodeIntegration:true,
+    webSecurity: false
+  }})
+
 //html中<title>决定了窗口标题
 
 //关闭窗口

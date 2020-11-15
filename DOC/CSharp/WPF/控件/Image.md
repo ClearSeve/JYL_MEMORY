@@ -6,6 +6,7 @@ ActualWidth属性表示显示图像后，控件实际的宽度，五图像时该
 
 img.Source = new BitmapImage(new Uri(@"D:\1.jpg", UriKind.RelativeOrAbsolute));
 
+img.Stretch =  Stretch.Fill;
 ## 加载jpg流显示
 
 ```

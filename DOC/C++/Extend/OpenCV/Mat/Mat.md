@@ -41,6 +41,12 @@ mat1.convertTo(mat1, CV_16U);
 cv::Mat dst = img(cv::Rect(x, y, width, height));
 ```
 
+## 缩放
+```
+Mat dst = Mat::zeros(512, 512, src.type());
+resize(img, dst, dst.size());
+```
+
 ## 获取行
 ```
 uchar* data = img.ptr<uchar>(row);
