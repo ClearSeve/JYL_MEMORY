@@ -17,6 +17,12 @@ C:\Users\用户名\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu18.04onWin
 安装编译环境：
 sudo apt-get install build-essential
 sudo apt install gdb
+
+查看所有安装的子系统
+wsl --list --all
+
+删除某个子系统
+wsl --unregister name
 ```
 
 ## 命令

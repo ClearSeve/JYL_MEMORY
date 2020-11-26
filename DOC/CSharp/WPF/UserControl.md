@@ -2,28 +2,31 @@
 
 ## 用户控件创建
 
-新建<font color="#0000FF">UserControl1</font>  
-命名空间<font color="#FFFF00">UserSpace</font> 
+新建 UserControl1 
+命名空间 UserSpace
 
 
 代码中包含：
-public int <font color="#FF0000">userVal </font>{ get; set; }  
-public void <font color="#00FFFF">Fun</font>()  
+public int userVal{ get; set; }  
+public void Fun()  
 {  
     int y = userVal + 10;  
 }  
 
 ## 调用
 
+
+```
 <Window .........  
-    xmlns:<font color="#00FF00">NNN</font> ="clr-namespace:<font color="#FFFF00">UserSpace</font>"   
+    xmlns:NNN ="clr-namespace:UserSpace"   
      ..........>  
 
-<<font color="#00FF00">NNN</font>:<font color="#0000FF">UserControl1</font>  x:Name="<font color="#FF00FF">userCtl</font>"  <font color="#FF0000">userVal</font>="123"/>
+<NNN:UserControl1  x:Name="userCtl"  userVal="123"/>
 
 
 调用用户控件中的方法:  
-<font color="#FF00FF">userCtl</font>.<font color="#00FFFF">Fun()</font>;
+userCtl.Fun();
+```
 
 ```
 引用其他dll中的控件时，需要clr-namespace:***;assembly=**
@@ -46,7 +49,7 @@ public UserControl CONTENT_PAGE
 }
 ```
 
-CONTENT_PAGE = <font color="#FF00FF">userCtl</font>;
+CONTENT_PAGE = userCtl;
 
 
 ## 动态加载xaml
