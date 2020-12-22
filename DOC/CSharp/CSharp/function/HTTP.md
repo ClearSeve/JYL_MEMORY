@@ -12,6 +12,31 @@ using (WebResponse wr = req.GetResponse())
       StreamReader streamReader = new StreamReader(responseStream, Encoding.UTF8);
       string retString = streamReader.ReadToEnd();
 }
+
+
+string GetRequestStr(string url, Encoding enc)
+{
+    HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(url);
+    req.Method = "GET";
+    string retString = "";
+    using (HttpWebResponse wr = (HttpWebResponse)req.GetResponse())
+    {
+        if (wr.ContentEncoding == "gzip")
+        {
+            Stream responseStream = wr.GetResponseStream();
+            GZipStream compressionstream = new GZipStream(responseStream, CompressionMode.Decompress);
+            StreamReader reader = new StreamReader(compressionstream);
+            retString = reader.ReadToEnd();
+        }
+        else
+        {
+            Stream responseStream = wr.GetResponseStream();
+            StreamReader streamReader = new StreamReader(responseStream, enc);
+            retString = streamReader.ReadToEnd();
+        }
+    }
+    return retString;
+}
 ```
 
 ## POST请求

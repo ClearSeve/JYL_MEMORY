@@ -52,6 +52,7 @@ class PlotModelCtl
     }
     void DiyAxis()
     {
+         OxyColor clr = OxyColor.FromRgb(198, 201, 206);
             //定义y轴
             LinearAxis leftAxis = new LinearAxis()
             {
@@ -62,6 +63,7 @@ class PlotModelCtl
                 TitlePosition = 0,
                 MajorGridlineStyle = LineStyle.Solid,
                 MinorGridlineStyle = LineStyle.None,
+                TextColor = clr,
             };
 
             //定义x轴

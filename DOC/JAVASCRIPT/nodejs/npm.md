@@ -18,6 +18,9 @@ npm install -g cnpm --registry=https://registry.npm.taobao.org
 npm install  
 在项目目录运行，安装项目依赖到当前目录的node_modules
 
+## 卸载
+npm uninstall vue-cli -g
+
 ## 运行
 
 ```
@@ -36,6 +39,16 @@ npm run build
     "build": "***"
 }
 ```
+
+
+## 配置
+C:\Users\jyl\.npmrc
+
+获取npm全局安装位置
+npm config get prefix
+
+npm config set prefix "D:\\dir"
+
 
 ## 安装模块
 

@@ -8,6 +8,11 @@ imwrite("D:\\111.jpg",img);
 namedWindow("window", CV_WINDOW_AUTOSIZE);
 imshow("window", img);
 
+
+vector<int> compression_params;
+compression_params.push_back(CV_IMWRITE_JPEG_QUALITY);
+compression_params.push_back(95);
+imwrite("xx.jpg", mat, compression_params);
 ```
 
 ## 构造
@@ -15,7 +20,20 @@ imshow("window", img);
 ```
 cv::Mat mat(height, width, CV_16UC1);//16UC1表示16位深度1通道
 mat.data[pos] = val;
+
+cv::Scalar sc = { r,g,b };
+cv::Mat mat(height, width, CV_8UC3,sc);
 ```
+
+
+## 修改值
+```
+cv::Mat src;
+cv::Mat temp;
+
+src -= temp;
+```
+
 
 ## 转换
 
