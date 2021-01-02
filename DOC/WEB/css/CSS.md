@@ -19,14 +19,20 @@ class在同一页面可以重复使用
 
 ```
 对于div1的区域中，选择p标签进行设置
-.div1 p{
-    color: aqua;
-}
+.div1 p{}
+
+只选择div1区域中一级元素p，不选择div1区域中多级元素下的p元素
+.div1 >p{}
+
+
 
 对于div标签，选择content_1进行设置
-div.content_1{
-    color: aqua;
-}
+div .content_1{}
+```
+
++ 多个选择
+```
+html,body{height:100%;}
 ```
 
 + id选择器
@@ -36,9 +42,8 @@ id在同一页面不能重复使用
 #first{color:Red;}
 #second{color:Blue}
 
-iｄ不能使用数字
+id不能使用数字
 <p id="first">xxxx</p>
-<p id="second">yyyy</p>
 ```
 
 ## 链接式
@@ -76,5 +81,8 @@ style标记对中定义
 </style>
 ```
 
-## 位置
-在横向，left、right、width 三个量中，两个量就可以确定位置
+## 注释
+
+```
+/* xxx */
+```

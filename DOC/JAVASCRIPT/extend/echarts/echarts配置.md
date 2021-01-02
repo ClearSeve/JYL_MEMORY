@@ -33,10 +33,3 @@
 
 </html>
 ```
-
-```
-//自动宽度
-window.onresize = function(){
-    chart.resize();
-}
-```
