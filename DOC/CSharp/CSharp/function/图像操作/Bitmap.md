@@ -1,47 +1,31 @@
-# 图像操作
+# Bitmap
 
-## BitmapImage
-
-```
-//jpg流转换成BitmapImage
-BitmapImage bmp = null;
-try
-{
-    bmp = new BitmapImage();
-    bmp.BeginInit();
-    bmp.StreamSource = new MemoryStream(imgBytes);
-    bmp.EndInit();
-}
-catch { bmp = null; }
-
-//itmapImage转换成jpg流
-bmp.StreamSource.Seek(0, SeekOrigin.Begin);
-bmp.StreamSource.Read(imgBytes, 0, imgBytes.Length);
-
-//BitmapImage转bmp
-public System.Drawing.Bitmap BitmapImage2Bitmap(BitmapImage bitmapImage)
-{
-    using (System.IO.MemoryStream outStream = new System.IO.MemoryStream())
-    {
-        BitmapEncoder enc = new BmpBitmapEncoder();
-        enc.Frames.Add(BitmapFrame.Create(bitmapImage));
-        enc.Save(outStream);
-        System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(outStream);
-
-        return bitmap; 
-    }
-}
-```
-
-## Bitmap
+## 创建
 
 FileStream fs = new FileStream("D:\\1.jpg", FileMode.Open);  
 Bitmap bmp = new Bitmap(fs);//new Bitmap("D:\\1.jpg")  
 
-## Image
+## 保存
 
-Image image = Image.FromFile(imgPathName);  
-image = Image.FromStream(Stream);
+bmp.Save(imgPathName, System.Drawing.Imaging.ImageFormat.Jpeg);//默认存储bmp格式，可选择输出格式
+
+
+## 画图
+```
+System.Drawing.Graphics grap = System.Drawing.Graphics.FromImage(bmp);
+grap.PageUnit = System.Drawing.GraphicsUnit.Pixel;
+
+int fontSize = 100;
+var font = new System.Drawing.Font("宋体", fontSize, System.Drawing.GraphicsUnit.Pixel);
+var brush = new System.Drawing.SolidBrush(System.Drawing.Color.Yellow);
+grap.DrawString(name, font, brush, txtX, txtY);
+
+
+int penWidth = 10;
+grap.DrawRectangle(new System.Drawing.Pen(System.Drawing.Color.Red, penWidth), new System.Drawing.Rectangle(ptAX, ptAY, ptBX, ptBY ));
+
+grap.Dispose();
+```
 
 
 ## 获取图像宽高

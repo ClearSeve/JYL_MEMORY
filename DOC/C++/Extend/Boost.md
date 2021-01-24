@@ -1,5 +1,7 @@
 # boost
 
+https://sourceforge.net/projects/boost/files/boost-binaries/
+
 ## 编译
 
 1. 打开vs命令提示符（x86本机工具命令提示符）

@@ -36,30 +36,36 @@ CV_THRESH_BINARY_INV则相反处理
 
 
 
-	CvMemStorage* storage = cvCreateMemStorage(0);
-	CvSeq* contour = 0;
-	cvFindContours(gray, storage, &contour);//gray为2值图像
-
-	cvZero(gray);
-
-	for (; contour != 0; contour = contour->h_next)
+CvMemStorage* storage = cvCreateMemStorage(0);
+CvSeq* contour = 0;
+cvFindContours(gray, storage, &contour);//gray为2值图像
+cvZero(gray);
+vector<int> ptVec;
+for (; contour != 0; contour = contour->h_next)
+{
+	int count = (int)contour->total;
+	ptVec.clear();
+	ptVec.resize(count * 2);
+	cvCvtSeqToArray(contour, &ptVec[0]);
+	for (int j = 0; j < count; j++)
 	{
-		double contourSize = fabs(cvContourArea(contour));//轮廓面积
-		///CvRect rect = cvBoundingRect(contour, 0);//轮廓外接矩形
-
-		if(contourSize > 200) continue;//挑选面积小的
-
-		
-
-		cvDrawContours(pImg, contour,
-			cvScalar(255,255,255),cvScalar(255,255,255),
-			-1,CV_FILLED);
-		//pImg是原始图，gray是二值图
-		//CV_FILLED代表完全填充，cvScalar参数可以是1到4个，和图像位数相关
-	
+		int ptx = ptVec[j * 2];
+		int pty = ptVec[j * 2 + 1];
 	}
 
-    cvReleaseMemStorage(&storage);
+
+	double contourSize = fabs(cvContourArea(contour));//轮廓面积
+	///CvRect rect = cvBoundingRect(contour, 0);//轮廓外接矩形
+	if(contourSize > 200) continue;//挑选面积小的
+	
+	cvDrawContours(pImg, contour,
+		cvScalar(255,255,255),cvScalar(255,255,255),
+		-1,CV_FILLED);
+	//pImg是原始图，gray是二值图
+	//CV_FILLED代表完全填充，cvScalar参数可以是1到4个，和图像位数相关
+
+}
+cvReleaseMemStorage(&storage);
 
 
 

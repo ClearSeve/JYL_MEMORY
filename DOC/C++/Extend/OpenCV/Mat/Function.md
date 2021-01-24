@@ -13,4 +13,3 @@ temp = MatrixCom.colRange(src.cols, src.cols + src2.cols);
 src2.copyTo(temp);
 cv::imwrite(outpathName.c_str(), MatrixCom);
 ```
-

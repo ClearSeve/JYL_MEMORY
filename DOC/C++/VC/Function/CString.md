@@ -60,6 +60,27 @@ wchar_t *pPath=new wchar_t[i];
 ::MultiByteToWideChar(CP_ACP,0,(LPCTSTR)file,-1,pPath,i);
 delete[] pPath;
 
+```
+//GBK -> UTF-8 
+std::string GBKToUTF8(const std::string& strGBK)
+{
+	std::string strOutUTF8 = "";
+	WCHAR * str1;
+	int n = MultiByteToWideChar(CP_ACP, 0, strGBK.c_str(), -1, NULL, 0);
+	str1 = new WCHAR[n];
+	MultiByteToWideChar(CP_ACP, 0, strGBK.c_str(), -1, str1, n);
+	n = WideCharToMultiByte(CP_UTF8, 0, str1, -1, NULL, 0, NULL, NULL);
+	char * str2 = new char[n];
+	WideCharToMultiByte(CP_UTF8, 0, str1, -1, str2, n, NULL, NULL);
+	strOutUTF8 = str2;
+	delete[]str1;
+	str1 = NULL;
+	delete[]str2;
+	str2 = NULL;
+	return strOutUTF8;
+}
+```
+
 ## CString转换
 CStringW strw = _T("abc");
 CStringA str(strw.GetBuffer());

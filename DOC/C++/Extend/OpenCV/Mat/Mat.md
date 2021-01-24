@@ -42,6 +42,10 @@ cv::Mat image = cv::cvarrToMat(ipl);
 IplImage result=I;
 ```
 
+## 图像翻转
+//上下翻转 
+cv::flip(mat,mat,0);
+
 ## 颜色转换
 
 ```

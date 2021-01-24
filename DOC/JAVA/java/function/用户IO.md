@@ -1,7 +1,7 @@
 # 用户IO
 
 ```
-  System.out.println("xx");
+System.out.println("xx");
 
 Scanner input=new Scanner(System.in);
 String val1=input.next();
