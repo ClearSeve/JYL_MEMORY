@@ -1,4 +1,7 @@
 # websocket-sharp
+
+WebSocketSharp-netstandard
+
 ```
 using WebSocketSharp;
 using WebSocketSharp.Server;
@@ -10,7 +13,7 @@ using (var ws = new WebSocket("ws://127.0.0.1:8081/con1"))
     ws.OnMessage += (sender, e) =>
     {
         Console.WriteLine(e.Data);
-    }
+    };
     
     ws.Connect();
 

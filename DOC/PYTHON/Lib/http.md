@@ -16,7 +16,7 @@ class ProHeader(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(rsp)  
     def do_POST(self):  
-        datas = self.rfile.read(int(self.headers['content-length']))
+        datas = self.rfile.read(int(self.headers['Content-Length']))
 
 if __name__ == '__main__':  
     httpd = HTTPServer(('', 1234), ProHeader)  
