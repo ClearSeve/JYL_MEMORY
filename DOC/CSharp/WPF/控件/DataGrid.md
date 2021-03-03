@@ -48,6 +48,37 @@ m_data.Add(cm);
 DataGrid_Name.DataContext = m_data;
 ```
 
+## 单元格数据修改事件
+```
+发生在单元格数据修改，但未刷新后台绑定数据
+DataGrid_Name.CellEditEnding
+
+
+
+DataGrid_Name.CellEditEnding += CellEditEnding;
+Thread thread = new Thread(Thr);
+thread.IsBackground = true;
+thread.Start();
+
+
+ManualResetEvent manualEvent = new ManualResetEvent(false);
+void Thr()
+{
+    while(true)
+    {
+        manualEvent.WaitOne();
+        Thread.Sleep(1000);
+        .............
+        manualEvent.Reset();
+    }
+}
+private void CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+{
+    if (manualEvent.WaitOne(0)) return;
+    manualEvent.Set();
+}
+```
+
 ## 设置不可编辑
 
 IsReadOnly = true;

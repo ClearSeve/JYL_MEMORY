@@ -4,7 +4,6 @@ MySql.Data
 
 ```
 //sql语句末尾需要带;
-public delegate bool MySqlOpt_Query_PerRow(MySqlDataReader reader);
 public delegate void MySqlOpt_Query_OneRow(object result);
 class MySqlOpt
 {

@@ -2,7 +2,15 @@
 
 实现IEnumerable的类都可以用linq
 
+
 ## 查询
+
+```
+if (arry.Any(it => it.Id > 5))
+{//判断成员中是否有ID>5的数据
+    
+}
+```
 
 ```
 string[] arry = { "a1","a2","b1","b2","c"};

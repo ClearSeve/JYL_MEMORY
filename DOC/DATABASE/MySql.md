@@ -100,7 +100,7 @@ HKEY_LOCAL_MACHINE\\SYSTEM\\ControlSet001\\Services\\Eventlog\\Application\\MySQ
 
 C:\\ProgramData\\MySQL删除
 
-删除C:\\Documents and Settings\\All Users\\Application Data\\MySQL
+删除C:\ProgramData\MySQL
 
 
 ## 导入db
